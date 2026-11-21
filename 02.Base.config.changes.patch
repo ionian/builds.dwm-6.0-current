@@ -1,14 +1,14 @@
-From 26d62db102113de44c65cf8a0ef92e4d17589c2b Mon Sep 17 00:00:00 2001
+From fcf71a40e9570d631c82bef5763874d6c110a3d5 Mon Sep 17 00:00:00 2001
 From: ionian <mike.github778@gmail.com>
-Date: Sat, 14 Nov 2026 13:02:32 -0800
-Subject: [PATCH] adding my base configs to config.def.h
+Date: Sat, 21 Nov 2026 14:27:16 -0800
+Subject: [PATCH] Apply 02
 
 ---
  config.def.h | 33 +++++++++++++++++++++++----------
  1 file changed, 23 insertions(+), 10 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index 77ff358..fd2e0e8 100644
+index 77ff358..db7c693 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -9,28 +9,34 @@ static const char selbordercolor[]  = "#005577";
@@ -60,18 +60,18 @@ index 77ff358..fd2e0e8 100644
  /* commands */
 -static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 -static const char *termcmd[]  = { "uxterm", NULL };
-+static const char  *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
-+static const char   *termcmd[] = { "urxvtc", NULL };
-+static const char  *xtermcmd[] = { "xterm",  NULL };
-+static const char   *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
-+static const char   *tmuxcmd[] = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "/home/jason/.tmux/conf", NULL };
-+static const char    *padcmd[] = { "urxvtc", "-title", "scratchpad", "-geometry", "56x10-30+40", NULL };
-+static const char   *lockcmd[] = { "xautolock", "-locknow", NULL };
-+static const char *rebootcmd[] = { "systemctl", "reboot", NULL };
-+static const char   *shutcmd[] = { "systemctl", "poweroff", NULL };
++static const char       *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
++static const char        *termcmd[] = { "urxvtc", NULL };
++static const char       *xtermcmd[] = { "xterm",  NULL };
++static const char        *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
++static const char        *tmuxcmd[] = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "$HOME/.tmux/conf", NULL };
++static const char         *padcmd[] = { "urxvtc", "-title", "scratchpad", "-geometry", "56x10-30+40", NULL };
++static const char        *lockcmd[] = { "xautolock", "-locknow", NULL };
++static const char      *rebootcmd[] = { "systemctl", "reboot", NULL };
++static const char        *shutcmd[] = { "systemctl", "poweroff", NULL };
  
  static Key keys[] = {
  	/* modifier                     key        function        argument */
 -- 
-2.56.0
+2.56.1
 
