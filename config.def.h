@@ -67,7 +67,6 @@ static const char   *termcmd[] = { "urxvtc", NULL };
 static const char  *xtermcmd[] = { "xterm",  NULL };
 static const char   *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
 static const char   *tmuxcmd[] = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "/home/jason/.tmux/conf", NULL };
-/* commands */
 static const char *shotclipcmd[] = { "/bin/sh", "-c", "maim -s --noopengl | xclip -selection clipboard -t image/png", NULL };
 static const char *shoteditcmd[] = { "/bin/sh", "-c", "maim -s --noopengl /tmp/shot.png && mtpaint /tmp/shot.png && xclip -selection clipboard -t image/png < /tmp/shot.png", NULL };
 static const char    *padcmd[] = { "urxvtc", "-title", "scratchpad", "-geometry", "56x10-30+40", NULL };
