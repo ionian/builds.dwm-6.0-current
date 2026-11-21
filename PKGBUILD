@@ -17,6 +17,7 @@ _patches=(01.Setup.makefiles.patch
           04.Xft.patch
           05.Statuscolours.config.def.h.patch
           06.Statuscolours.dwm.c.patch
+          08.ScreenGrab-Editor.config.def.h.patch
           )
 source=(${source[@]} ${_patches[@]})
 
