@@ -1,0 +1,62 @@
+From 3ff95a4a3350a14189770b7bb2acb400d4d9b977 Mon Sep 17 00:00:00 2001
+From: ionian <mike.github778@gmail.com>
+Date: Fri, 20 Nov 2026 21:37:50 -0800
+Subject: [PATCH] adding screengrab-edit maim/xclip/mpaint to config.def.h
+ settings
+
+---
+ config.def.h | 24 +++++++++++++++---------
+ 1 file changed, 15 insertions(+), 9 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 64324a8..53fdaa6 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -34,6 +34,8 @@ static const Rule rules[] = {
+    {  NULL,         NULL,      "tmux",      1 << 2,       False,       -1 },
+    {  NULL,         NULL,      "ssh",       1 << 0,       False,       -1 },
+    {  NULL,         NULL,      "scratchpad",     0,       True,        -1 },
++   { "Gimp",        NULL,       NULL,       0,            True,        -1 },
++   { "mtpaint",     NULL,       NULL,       0,            True,        -1 },
+ };
+ 
+ /* layout(s) */
+@@ -60,15 +62,17 @@ static const Layout layouts[] = {
+ #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+ 
+ /* commands */
+-static const char  *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
+-static const char   *termcmd[] = { "urxvtc", NULL };
+-static const char  *xtermcmd[] = { "xterm",  NULL };
+-static const char   *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
+-static const char   *tmuxcmd[] = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "/home/jason/.tmux/conf", NULL };
+-static const char    *padcmd[] = { "urxvtc", "-title", "scratchpad", "-geometry", "56x10-30+40", NULL };
+-static const char   *lockcmd[] = { "xautolock", "-locknow", NULL };
+-static const char *rebootcmd[] = { "systemctl", "reboot", NULL };
+-static const char   *shutcmd[] = { "systemctl", "poweroff", NULL };
++static const char     *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG], "-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
++static const char      *termcmd[] = { "urxvtc", NULL };
++static const char     *xtermcmd[] = { "xterm",  NULL };
++static const char      *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
++static const char      *tmuxcmd[] = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "/home/jason/.tmux/conf", NULL };
++static const char  *shotclipcmd[] = { "/bin/sh", "-c", "maim -s --noopengl | xclip -selection clipboard -t image/png", NULL };
++static const char  *shoteditcmd[] = { "/bin/sh", "-c", "maim -s --noopengl /tmp/shot.png && mtpaint /tmp/shot.png && xclip -selection clipboard -t image/png < /tmp/shot.png", NULL };
++static const char       *padcmd[] = { "urxvtc", "-title", "scratchpad", "-geometry", "56x10-30+40", NULL };
++static const char      *lockcmd[] = { "xautolock", "-locknow", NULL };
++static const char    *rebootcmd[] = { "systemctl", "reboot", NULL };
++static const char      *shutcmd[] = { "systemctl", "poweroff", NULL };
+ 
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+@@ -95,6 +99,8 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+ 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+ 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
++	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = shotclipcmd } },
++	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = shoteditcmd } },
+ 	TAGKEYS(                        XK_1,                      0)
+ 	TAGKEYS(                        XK_2,                      1)
+ 	TAGKEYS(                        XK_3,                      2)
+-- 
+2.56.1
+
