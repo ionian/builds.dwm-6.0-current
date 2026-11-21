@@ -30,6 +30,8 @@ static const Rule rules[] = {
    { "chromium",    NULL,       NULL,       1 << 2,       False,       -1 },
    { "tabbed",      NULL,       NULL,       1 << 1,       False,       -1 },
    { "mpv",         NULL,       NULL,       1 << 0,       True,        -1 },
+   { "Gimp",        NULL,       NULL,            0,       True,        -1 },
+   { "mtpaint",     NULL,       NULL,            0,       True,        -1 },
    {  NULL,         NULL,      "mutt",      1 << 3,       False,       -1 },
    {  NULL,         NULL,      "tmux",      1 << 2,       False,       -1 },
    {  NULL,         NULL,      "ssh",       1 << 0,       False,       -1 },
@@ -65,6 +67,9 @@ static const char   *termcmd[] = { "urxvtc", NULL };
 static const char  *xtermcmd[] = { "xterm",  NULL };
 static const char   *mailcmd[] = { "urxvtc", "-title", "mutt", "-e", "mutt", NULL };
 static const char   *tmuxcmd[] = { "urxvtc", "-title", "tmux", "-e", "tmux", "-f", "/home/jason/.tmux/conf", NULL };
+/* commands */
+static const char *shotclipcmd[] = { "/bin/sh", "-c", "maim -s --noopengl | xclip -selection clipboard -t image/png", NULL };
+static const char *shoteditcmd[] = { "/bin/sh", "-c", "maim -s --noopengl /tmp/shot.png && mtpaint /tmp/shot.png && xclip -selection clipboard -t image/png < /tmp/shot.png", NULL };
 static const char    *padcmd[] = { "urxvtc", "-title", "scratchpad", "-geometry", "56x10-30+40", NULL };
 static const char   *lockcmd[] = { "xautolock", "-locknow", NULL };
 static const char *rebootcmd[] = { "systemctl", "reboot", NULL };
@@ -95,6 +100,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = shotclipcmd } },
+	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = shoteditcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
