@@ -28,6 +28,8 @@ prepare() {
     echo "=> $p"
     patch < ../$p || return 1
   done
+
+   cp config.def.h "$startdir/config.def.h"
 }
 
 build() {
